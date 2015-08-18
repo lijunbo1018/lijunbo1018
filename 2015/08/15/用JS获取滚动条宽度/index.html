@@ -3,24 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>checkbox选中了吗 | Witness</title>
+  <title>用JS获取滚动条宽度 | Witness</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="工作中，遇到需要判断表单里一个checkbox是否为勾选状态，习惯性使用jQuery的attr方法来获取checked属性，结果发现不对，这里把学习结果记录一下。
-被误解的checkedlang: html1&amp;lt;input type=&quot;checkbox&quot; id=&quot;checkbox&quot; checked=&quot;checked&quot;/&amp;gt;
-以上述方式创建的的checkbox为选中状态，导致我想当然的以为其">
+  <meta name="description" content="实际项目中，遇到一个页面需要由定宽的导航和自适应的内容组成，于是用js来计算内容的宽度。然而由于滚动条宽度欠考虑的问题，引发了一个布局混乱的bug。根据开发机上实测的结果，给滚动条估了一个定宽值。结果发现，用户环境上的滚动条比我们想的宽（尽管操作系统、浏览器版本都一样），于是需要考虑怎么获得滚动条有多宽呢？
+JavaScript怎么获取滚动条宽度完全没有思路应该怎么搞。一番搜索，在stackove">
 <meta property="og:type" content="article">
-<meta property="og:title" content="checkbox选中了吗">
-<meta property="og:url" content="http://lijunbo1018.github.io/2015/07/21/checkbox选中了吗/index.html">
+<meta property="og:title" content="用JS获取滚动条宽度">
+<meta property="og:url" content="http://lijunbo1018.github.io/2015/08/15/用JS获取滚动条宽度/index.html">
 <meta property="og:site_name" content="Witness">
-<meta property="og:description" content="工作中，遇到需要判断表单里一个checkbox是否为勾选状态，习惯性使用jQuery的attr方法来获取checked属性，结果发现不对，这里把学习结果记录一下。
-被误解的checkedlang: html1&amp;lt;input type=&quot;checkbox&quot; id=&quot;checkbox&quot; checked=&quot;checked&quot;/&amp;gt;
-以上述方式创建的的checkbox为选中状态，导致我想当然的以为其">
-<meta property="og:updated_time" content="2015-07-23T04:08:37.000Z">
+<meta property="og:description" content="实际项目中，遇到一个页面需要由定宽的导航和自适应的内容组成，于是用js来计算内容的宽度。然而由于滚动条宽度欠考虑的问题，引发了一个布局混乱的bug。根据开发机上实测的结果，给滚动条估了一个定宽值。结果发现，用户环境上的滚动条比我们想的宽（尽管操作系统、浏览器版本都一样），于是需要考虑怎么获得滚动条有多宽呢？
+JavaScript怎么获取滚动条宽度完全没有思路应该怎么搞。一番搜索，在stackove">
+<meta property="og:updated_time" content="2015-08-18T15:04:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="checkbox选中了吗">
-<meta name="twitter:description" content="工作中，遇到需要判断表单里一个checkbox是否为勾选状态，习惯性使用jQuery的attr方法来获取checked属性，结果发现不对，这里把学习结果记录一下。
-被误解的checkedlang: html1&amp;lt;input type=&quot;checkbox&quot; id=&quot;checkbox&quot; checked=&quot;checked&quot;/&amp;gt;
-以上述方式创建的的checkbox为选中状态，导致我想当然的以为其">
+<meta name="twitter:title" content="用JS获取滚动条宽度">
+<meta name="twitter:description" content="实际项目中，遇到一个页面需要由定宽的导航和自适应的内容组成，于是用js来计算内容的宽度。然而由于滚动条宽度欠考虑的问题，引发了一个布局混乱的bug。根据开发机上实测的结果，给滚动条估了一个定宽值。结果发现，用户环境上的滚动条比我们想的宽（尽管操作系统、浏览器版本都一样），于是需要考虑怎么获得滚动条有多宽呢？
+JavaScript怎么获取滚动条宽度完全没有思路应该怎么搞。一番搜索，在stackove">
   
   
     <link rel="icon" href="favicon.png">
@@ -127,7 +124,7 @@
 </aside>
 
       
-      <section id="main"><article id="post-checkbox选中了吗" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-用JS获取滚动条宽度" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -136,7 +133,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      checkbox选中了吗
+      用JS获取滚动条宽度
     </h1>
   
 
@@ -144,8 +141,8 @@
           
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2015/07/21/checkbox选中了吗/">
-      <time datetime="2015-07-21T15:05:50.000Z" itemprop="datePublished">2015-07-21</time>
+    <a href="/2015/08/15/用JS获取滚动条宽度/">
+      <time datetime="2015-08-15T06:35:43.000Z" itemprop="datePublished">2015-08-15</time>
     </a>
   </div>
 
@@ -161,28 +158,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>工作中，遇到需要判断表单里一个checkbox是否为勾选状态，习惯性使用jQuery的attr方法来获取checked属性，结果发现不对，这里把学习结果记录一下。</p>
-<h3 id="被误解的checked">被误解的checked</h3><figure class="highlight nix"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="variable">type=</span><span class="string">"checkbox"</span> <span class="variable">id=</span><span class="string">"checkbox"</span> <span class="variable">checked=</span><span class="string">"checked"</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p>以上述方式创建的的checkbox为选中状态，导致我想当然的以为其中的checked属性就是表示checkbox的选种状态的，然而未选中的状态下checked属性的值是什么？通过实验我发现，不过我选不选中，checked属性的值始终是”checked”，显然，通过$(‘#checkbox’).attr(‘checked’)取到的值始终为”checked”，这怎么破？</p>
-<h3 id="正确的姿势">正确的姿势</h3><p>Google一番，发现正确的姿势（jQuery 1.6+）应该使用prop方法，实测$(‘#checkbox’).prop(‘checked’)得到的是一个布尔值，而不是字符串<br><figure class="highlight ruby"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span><span class="string">'#checkbox'</span>).prop(<span class="string">'checked'</span>)</span><br><span class="line"><span class="status">=&gt;</span>true</span><br></pre></td></tr></table></figure><br>如果去掉checkbox的勾选状态后，上述方法返回false，果然奏效。让我来看看prop方法是个什么鬼，<a href="http://api.jquery.com/prop/#prop1" target="_blank" rel="external">官方API</a>这么说：<br><blockquote><p>The .prop() method gets the property value for only the first element in the matched set.</p>
-</blockquote><br>那我所误用的attr方法又是个什么鬼，<a href="http://api.jquery.com/attr/#attr1" target="_blank" rel="external">官方API</a>这么说：<br><blockquote><p>The .attr() method gets the attribute value for only the first element in the matched set.</p>
-</blockquote><br>一个property，一个attribute，似乎在中文里我们都叫属性？我还真说出来这俩词的差异。。。</p>
-<h3 id="Attributes_VS_Properties">Attributes VS Properties</h3><p>又是一番Google，应该是这样：当我们写HTML代码的时候，我们给HTML元素添加属（attribute），当浏览器处理HTML源码生成DOM元素时，DOM元素会有相应的属性（property）。简言之，attribute属于HTML元素，而property属于DOM元素。举个栗子，仍然是一个checkbox：<br><figure class="highlight fsharp"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"checkbox"</span> id=<span class="string">"checkbox"</span> checked/&gt;</span><br></pre></td></tr></table></figure><br>有如下javascript代码的执行结果：<br><figure class="highlight stylus"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">var</span> checkbox = document.<span class="function"><span class="title">getElementById</span><span class="params">(<span class="string">'checkbox'</span>)</span></span></span><br><span class="line">=&gt;undefined</span><br><span class="line">checkbox<span class="class">.checked</span>   <span class="comment">// 我们需要的表明checkbox勾选状态的属性（property），这也是一种获取方式</span></span><br><span class="line">=&gt;true</span><br><span class="line">checkbox.<span class="function"><span class="title">getAttribute</span><span class="params">(<span class="string">'checked'</span>)</span></span>  <span class="comment">// HTML元素里的属性（attribute）</span></span><br><span class="line">=&gt;<span class="string">""</span></span><br><span class="line">checkbox<span class="class">.defaultChecked</span>    </span><br><span class="line">=&gt;true</span><br><span class="line">checkbox<span class="class">.attrbutes</span><span class="class">.length</span></span><br><span class="line">=&gt;<span class="number">3</span></span><br></pre></td></tr></table></figure></p>
-<p>对于HTML元素checkbox，它有三个属性（attribute），当DOM元素checkbox被创建后，它会有包括checked在内的n多属性（property），这个checked属性（property）才真正表明checkbox的选种状态，而HTML元素里的checked属性（attribute）只关乎DOM元素的defaultChecked属性（property），且defaultChecked为布尔值，由HTML元素里checked属性（attribute）的有无决定，与其值无关。所有HTML元素里的属性（attribute）都作为一个attributes属性（property，类型为NamedNodeMap）存在于DOM元素里，可以看到其长度为3。</p>
-<h3 id="jQuery_-attr_VS_-prop">jQuery .attr VS .prop</h3><p>还是来看看<a href="http://api.jquery.com/prop/#prop-propertyName" target="_blank" rel="external">官方API</a>怎么说：<br><blockquote><p>Before jQuery 1.6, the .attr() method sometimes took property values into account when retrieving some attributes, which could cause inconsistent behavior. As of jQuery 1.6, the .prop() method provides a way to explicitly retrieve property values, while .attr() retrieves attributes.<br>For example, selectedIndex, tagName, nodeName, nodeType, ownerDocument, defaultChecked, and defaultSelected should be retrieved and set with the .prop() method. Prior to jQuery 1.6, these properties were retrievable with the .attr() method, but this was not within the scope of attr. These do not have corresponding attributes and are only properties.</p>
-</blockquote></p>
-<p>这么说来，jQuery 1.6之前的attr方法引入了一些一致性的问题。我们要的表明checkbox勾选状态的，是属于DOM元素的checked属性（property），而HTML元素的checked属性（attribute）的值并没有什么用，仅仅是其有无反映到DOM元素的defaultChecked属性（property）上。</p>
-<p>与之相似的，如果我们需要改变checkbox的勾选状态，也需要用.prop方法，如$(‘#checkbox’).prop(‘checked’, true)来选中ID为checkbox的复选框。</p>
-<h3 id="Ref">Ref</h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes" target="_blank" rel="external">HTML Attributes, Mozilla Dev Center</a></p>
-<p><a href="https://developer.mozilla.org/en/DOM/element#Properties" target="_blank" rel="external">DOM Element Properties, Mozilla Dev Center</a></p>
+        <p>实际项目中，遇到一个页面需要由定宽的导航和自适应的内容组成，于是用js来计算内容的宽度。然而由于滚动条宽度欠考虑的问题，引发了一个布局混乱的bug。根据开发机上实测的结果，给滚动条估了一个定宽值。结果发现，用户环境上的滚动条比我们想的宽（尽管操作系统、浏览器版本都一样），于是需要考虑怎么获得滚动条有多宽呢？</p>
+<h3 id="JavaScript怎么获取滚动条宽度">JavaScript怎么获取滚动条宽度</h3><p>完全没有思路应该怎么搞。一番搜索，在stackoverflow上找到了<a href="http://stackoverflow.com/questions/13382516/getting-scroll-bar-width-using-javascript" target="_blank" rel="external">这个方法</a>：<br>作者的做法很巧妙，创建两个hidden的div，将外层div宽度设为100px，并且把overflow设为scroll迫使滚动条展现，再将内层元素宽度设为100%，通过计算两个元素offsetWidth的差值来得到滚动条的宽度。 整理了一下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getScrollbarWidth</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> outer = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">    outer.style.visibility = <span class="string">'hidden'</span>;</span><br><span class="line">    outer.style.width = <span class="string">'100px'</span>;</span><br><span class="line">    outer.style.msOverflowStyle = <span class="string">'scrollbar'</span>;   <span class="comment">// 为了适配windows</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> inner = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">    inner.style.width = <span class="string">'100%'</span>;</span><br><span class="line"></span><br><span class="line">    outer.appendChild(inner);</span><br><span class="line">    outer.style.overflow = <span class="string">'scroll'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(outer);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> outerOffsetWidth = outer.offsetWidth;</span><br><span class="line">    <span class="keyword">var</span> innerOffsetWidth = inner.offsetWidth;</span><br><span class="line"></span><br><span class="line">    outer.parentNode.removeChild(outer);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> outerOffsetWidth - innerOffsetWidth;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码整体都很容易理解，不过要搞懂为什么这样能算出滚动条的宽度，关键就是要搞懂offsetWidth是什么东西。</p>
+<h3 id="什么是offsetWidth">什么是offsetWidth</h3><p>说到offsetWidth，其实DOM元素还有其他几个相关的属性(properties)，当我们需要知道一个元素的高度、宽度的时候，我们需要用到这些属性，这里把它们分成三对来说：</p>
+<h4 id="1-_clientHeight/clientWidth">1. clientHeight/clientWidth</h4><p>这一对属性表示的是元素实际可见内容的所占空间。它包含了内边距(padding)，但是不包含边框(border)、外边距(margin)和滚动条（相应的，clientHeight不包含水平滚动条的高度，clientWidth不包含垂直滚动条的宽度）。</p>
+<h4 id="2-_offsetHeight/offsetWidth">2. offsetHeight/offsetWidth</h4><p>这一对属性表示的是元素在页面上一共占据了多少空间。它包含了内边距(padding)、边框(border)以及滚动条（相应的，offsetHeight包含了水平滚动条的高度，offsetWidth包含了垂直滚动条的宽度，<strong>这点就是我们所利用的</strong>）。</p>
+<h4 id="3-_scrollHeight/scrollWidth">3. scrollHeight/scrollWidth</h4><p>这一对属性表示的是元素内容实际上的尺寸（包括了可能由于滚动条而未展示出来的内容）。</p>
+<p>这样说起来很抽象，感谢<a href="http://stackoverflow.com/users/4381665/alexander-solonik" target="_blank" rel="external">Alexander Solonik</a>在<a href="http://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively" target="_blank" rel="external">stackoverflow</a>上为我们提供了一个带有标尺的讲解以及<a href="http://jsfiddle.net/y8Y32/25/" target="_blank" rel="external">jsFiddle</a>的实例：</p>
+<iframe width="100%" height="500" src="http://jsfiddle.net/y8Y32/25/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<p>通过实例再结合上面的文字描述，我们很容易理解了为什么先前的JS代码可以算出垂直滚动条的宽度：<br>因为外层元素的offsetWidth包含了clientWidth、padding(0)、border(0)、以及滚动条，而内层元素的宽度设置为了100%，且它也没有padding、border或者滚动条，所以内层元素的offsetWidth实际上应该等于外层元素的clientWidth，二者相减即可算出垂直滚动条的宽度。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://lijunbo1018.github.io/2015/07/21/checkbox选中了吗/" data-id="cidcs4h460000ws0djs87gcyo" class="article-share-link">分享到</a>
+      <a data-url="http://lijunbo1018.github.io/2015/08/15/用JS获取滚动条宽度/" data-id="cidcs4h4y000bws0dk0hddg7w" class="article-share-link">分享到</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
 
     </footer>
   </div>
@@ -190,15 +184,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/08/02/vertical-align和垂直居中/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          vertical-align和垂直居中
-        
-      </div>
-    </a>
   
+    <a href="/2015/08/02/vertical-align和垂直居中/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vertical-align和垂直居中</div>
+    </a>
   
 </nav>
 
