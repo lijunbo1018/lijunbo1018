@@ -27,8 +27,8 @@
   
   <link href='//fonts.useso.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
   <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   
 
   
@@ -91,16 +91,16 @@
       <h2 id="name">lijunbo</h2>
       <h3 id="title"></h3>
       <span id="location"><i class="fa fa-map-marker"></i>中国，北京</span>
-      <a id="follow" href="http://github.com/lijunbo1018/">关注我</a>
+      <a id="follow" href="http://github.com/lijunbo1018/">IKUTI</a>
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
         3
-        <span>文章</span>
+        <span>pos</span>
       </div>
       <div class="article-info-block">
         5
-        <span>标签</span>
+        <span>tag</span>
       </div>
     </div>
     
@@ -110,11 +110,11 @@
           
           <td><a href="http://github.com/lijunbo1018/" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
           
-          <td><a href="/#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
+          <td><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></td>
           
-          <td><a href="/#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
+          <td><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></td>
           
-          <td><a href="/#" target="_blank" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+          <td><a href="#" target="_blank" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
           
           <td><a href="/atom.xml" target="_blank" title="rss"><i class="fa fa-rss"></i></a></td>
           
@@ -162,24 +162,24 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>工作中，遇到需要判断表单里一个checkbox是否为勾选状态，习惯性使用jQuery的attr方法来获取checked属性，结果发现不对，这里把学习结果记录一下。</p>
-<h3 id="被误解的checked">被误解的checked</h3><figure class="highlight nix"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="variable">type=</span><span class="string">"checkbox"</span> <span class="variable">id=</span><span class="string">"checkbox"</span> <span class="variable">checked=</span><span class="string">"checked"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="被误解的checked"><a href="#被误解的checked" class="headerlink" title="被误解的checked"></a>被误解的checked</h3><figure class="highlight fsharp"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"checkbox"</span> id=<span class="string">"checkbox"</span> checked=<span class="string">"checked"</span>/&gt;</div></pre></td></tr></table></figure>
 <p>以上述方式创建的的checkbox为选中状态，导致我想当然的以为其中的checked属性就是表示checkbox的选种状态的，然而未选中的状态下checked属性的值是什么？通过实验我发现，不过我选不选中，checked属性的值始终是”checked”，显然，通过$(‘#checkbox’).attr(‘checked’)取到的值始终为”checked”，这怎么破？</p>
-<h3 id="正确的姿势">正确的姿势</h3><p>Google一番，发现正确的姿势（jQuery 1.6+）应该使用prop方法，实测$(‘#checkbox’).prop(‘checked’)得到的是一个布尔值，而不是字符串<br><figure class="highlight ruby"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span><span class="string">'#checkbox'</span>).prop(<span class="string">'checked'</span>)</span><br><span class="line"><span class="status">=&gt;</span>true</span><br></pre></td></tr></table></figure><br>如果去掉checkbox的勾选状态后，上述方法返回false，果然奏效。让我来看看prop方法是个什么鬼，<a href="http://api.jquery.com/prop/#prop1" target="_blank" rel="external">官方API</a>这么说：<br><blockquote><p>The .prop() method gets the property value for only the first element in the matched set.</p>
-</blockquote><br>那我所误用的attr方法又是个什么鬼，<a href="http://api.jquery.com/attr/#attr1" target="_blank" rel="external">官方API</a>这么说：<br><blockquote><p>The .attr() method gets the attribute value for only the first element in the matched set.</p>
+<h3 id="正确的姿势"><a href="#正确的姿势" class="headerlink" title="正确的姿势"></a>正确的姿势</h3><p>Google一番，发现正确的姿势（jQuery 1.6+）应该使用prop方法，实测$(‘#checkbox’).prop(‘checked’)得到的是一个布尔值，而不是字符串<br><figure class="highlight excel"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$('#checkbox').prop('checked')</div><div class="line">=&gt;<span class="built_in">true</span></div></pre></td></tr></table></figure><br>如果去掉checkbox的勾选状态后，上述方法返回false，果然奏效。让我来看看prop方法是个什么鬼，<a href="http://api.jquery.com/prop/#prop1" target="_blank" rel="external">官方API</a>这么说：<br><blockquote><p>The .prop() method gets the property value for only the first element in the matched set. </p>
+</blockquote><br>那我所误用的attr方法又是个什么鬼，<a href="http://api.jquery.com/attr/#attr1" target="_blank" rel="external">官方API</a>这么说：<br><blockquote><p>The .attr() method gets the attribute value for only the first element in the matched set. </p>
 </blockquote><br>一个property，一个attribute，似乎在中文里我们都叫属性？我还真说出来这俩词的差异。。。</p>
-<h3 id="Attributes_VS_Properties">Attributes VS Properties</h3><p>又是一番Google，应该是这样：当我们写HTML代码的时候，我们给HTML元素添加属（attribute），当浏览器处理HTML源码生成DOM元素时，DOM元素会有相应的属性（property）。简言之，attribute属于HTML元素，而property属于DOM元素。举个栗子，仍然是一个checkbox：<br><figure class="highlight fsharp"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"checkbox"</span> id=<span class="string">"checkbox"</span> checked/&gt;</span><br></pre></td></tr></table></figure><br>有如下javascript代码的执行结果：<br><figure class="highlight stylus"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">var</span> checkbox = document.<span class="function"><span class="title">getElementById</span><span class="params">(<span class="string">'checkbox'</span>)</span></span></span><br><span class="line">=&gt;undefined</span><br><span class="line">checkbox<span class="class">.checked</span>   <span class="comment">// 我们需要的表明checkbox勾选状态的属性（property），这也是一种获取方式</span></span><br><span class="line">=&gt;true</span><br><span class="line">checkbox.<span class="function"><span class="title">getAttribute</span><span class="params">(<span class="string">'checked'</span>)</span></span>  <span class="comment">// HTML元素里的属性（attribute）</span></span><br><span class="line">=&gt;<span class="string">""</span></span><br><span class="line">checkbox<span class="class">.defaultChecked</span>    </span><br><span class="line">=&gt;true</span><br><span class="line">checkbox<span class="class">.attrbutes</span><span class="class">.length</span></span><br><span class="line">=&gt;<span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Attributes-VS-Properties"><a href="#Attributes-VS-Properties" class="headerlink" title="Attributes VS Properties"></a>Attributes VS Properties</h3><p>又是一番Google，应该是这样：当我们写HTML代码的时候，我们给HTML元素添加属（attribute），当浏览器处理HTML源码生成DOM元素时，DOM元素会有相应的属性（property）。简言之，attribute属于HTML元素，而property属于DOM元素。举个栗子，仍然是一个checkbox：<br><figure class="highlight fsharp"><figcaption><span>lang: html</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input <span class="class"><span class="keyword">type</span></span>=<span class="string">"checkbox"</span> id=<span class="string">"checkbox"</span> checked/&gt;</div></pre></td></tr></table></figure><br>有如下javascript代码的执行结果：<br><figure class="highlight excel"><figcaption><span>lang: javascript</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">var</span> checkbox = document.getElementById('checkbox')</div><div class="line">=&gt;undefined</div><div class="line">checkbox.checked   // 我们需要的表明checkbox勾选状态的属性（property），这也是一种获取方式</div><div class="line">=&gt;<span class="built_in">true</span></div><div class="line">checkbox.getAttribute('checked')  // HTML元素里的属性（attribute）</div><div class="line">=&gt;<span class="string">""</span></div><div class="line">checkbox.defaultChecked    </div><div class="line">=&gt;<span class="built_in">true</span></div><div class="line">checkbox.attrbutes.length</div><div class="line">=&gt;<span class="number">3</span></div></pre></td></tr></table></figure></p>
 <p>对于HTML元素checkbox，它有三个属性（attribute），当DOM元素checkbox被创建后，它会有包括checked在内的n多属性（property），这个checked属性（property）才真正表明checkbox的选种状态，而HTML元素里的checked属性（attribute）只关乎DOM元素的defaultChecked属性（property），且defaultChecked为布尔值，由HTML元素里checked属性（attribute）的有无决定，与其值无关。所有HTML元素里的属性（attribute）都作为一个attributes属性（property，类型为NamedNodeMap）存在于DOM元素里，可以看到其长度为3。</p>
-<h3 id="jQuery_-attr_VS_-prop">jQuery .attr VS .prop</h3><p>还是来看看<a href="http://api.jquery.com/prop/#prop-propertyName" target="_blank" rel="external">官方API</a>怎么说：<br><blockquote><p>Before jQuery 1.6, the .attr() method sometimes took property values into account when retrieving some attributes, which could cause inconsistent behavior. As of jQuery 1.6, the .prop() method provides a way to explicitly retrieve property values, while .attr() retrieves attributes.<br>For example, selectedIndex, tagName, nodeName, nodeType, ownerDocument, defaultChecked, and defaultSelected should be retrieved and set with the .prop() method. Prior to jQuery 1.6, these properties were retrievable with the .attr() method, but this was not within the scope of attr. These do not have corresponding attributes and are only properties.</p>
+<h3 id="jQuery-attr-VS-prop"><a href="#jQuery-attr-VS-prop" class="headerlink" title="jQuery .attr VS .prop"></a>jQuery .attr VS .prop</h3><p>还是来看看<a href="http://api.jquery.com/prop/#prop-propertyName" target="_blank" rel="external">官方API</a>怎么说：<br><blockquote><p>Before jQuery 1.6, the .attr() method sometimes took property values into account when retrieving some attributes, which could cause inconsistent behavior. As of jQuery 1.6, the .prop() method provides a way to explicitly retrieve property values, while .attr() retrieves attributes.<br>For example, selectedIndex, tagName, nodeName, nodeType, ownerDocument, defaultChecked, and defaultSelected should be retrieved and set with the .prop() method. Prior to jQuery 1.6, these properties were retrievable with the .attr() method, but this was not within the scope of attr. These do not have corresponding attributes and are only properties.</p>
 </blockquote></p>
 <p>这么说来，jQuery 1.6之前的attr方法引入了一些一致性的问题。我们要的表明checkbox勾选状态的，是属于DOM元素的checked属性（property），而HTML元素的checked属性（attribute）的值并没有什么用，仅仅是其有无反映到DOM元素的defaultChecked属性（property）上。</p>
 <p>与之相似的，如果我们需要改变checkbox的勾选状态，也需要用.prop方法，如$(‘#checkbox’).prop(‘checked’, true)来选中ID为checkbox的复选框。</p>
-<h3 id="Ref">Ref</h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes" target="_blank" rel="external">HTML Attributes, Mozilla Dev Center</a></p>
+<h3 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes" target="_blank" rel="external">HTML Attributes, Mozilla Dev Center</a></p>
 <p><a href="https://developer.mozilla.org/en/DOM/element#Properties" target="_blank" rel="external">DOM Element Properties, Mozilla Dev Center</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://lijunbo1018.github.io/2015/07/21/checkbox选中了吗/" data-id="cidcs4h460000ws0djs87gcyo" class="article-share-link">分享到</a>
+      <a data-url="http://lijunbo1018.github.io/2015/07/21/checkbox选中了吗/" data-id="cixal4boi0000uxs6x7v7vibl" class="article-share-link">Bagikan</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li></ul>
@@ -212,7 +212,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
+    <h3 class="widget-title">terbaru</h3>
     <div class="widget">
       <ul id="recent-post" class="">
         
@@ -274,7 +274,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
+    <h3 class="widget-title">kategori</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/前端/">前端</a><span class="category-list-count">3</span></li></ul></li></ul>
     </div>
@@ -283,7 +283,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
+    <h3 class="widget-title">tag</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">1</span></li></ul>
     </div>
@@ -292,7 +292,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
+    <h3 class="widget-title">awan tag</h3>
     <div class="widget tagcloud">
       <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/DOM/" style="font-size: 20px;">DOM</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a>
     </div>
@@ -301,7 +301,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
+    <h3 class="widget-title">arsip</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
@@ -316,7 +316,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 lijunbo<br>
+      &copy; 2016 lijunbo<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
     </div>
   </div>
@@ -327,11 +327,11 @@
 <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>
