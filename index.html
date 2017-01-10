@@ -85,11 +85,11 @@
     </div>
     <div class="article-info profile-block">
       <div class="article-info-block">
-        3
+        4
         <span>文章</span>
       </div>
       <div class="article-info-block">
-        5
+        6
         <span>标签</span>
       </div>
     </div>
@@ -118,6 +118,74 @@
 
       
       <section id="main">
+      <article id="post-别忘写DOCTYPE" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/08/别忘写DOCTYPE/">别忘写DOCTYPE</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2017/01/08/别忘写DOCTYPE/">
+      <time datetime="2017-01-08T12:47:45.000Z" itemprop="datePublished">2017-01-08</time>
+    </a>
+  </div>
+
+
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/学习笔记/前端/">前端</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>遇到一个BUG，两页面采用完全相同的DOM结构和样式表，但是在浏览器里的表现就是不同。几番周折，发现唯一的不同就是其中一个页面首行没有写DOCTYPE。果不其然，加上DOCTYPE后，问题迎刃而解。那么这个熟悉又陌生的DOCTTYPE作用到底是什么？</p>
+<h3 id="DOCTYPE是什么"><a href="#DOCTYPE是什么" class="headerlink" title="DOCTYPE是什么"></a>DOCTYPE是什么</h3><p>根据<a href="https://en.wikipedia.org/wiki/Document_type_declaration" target="_blank" rel="external">维基百科</a>定义，DOCTYPE应该被称作文档类型声明（Document Type Declaration），是一条将特定的SGML或者XML文档与文档类型定义（Document Type Definition, DTD）相关联的指令。</p>
+<p>From <a href="https://www.w3.org/QA/Tips/Doctype" target="_blank" rel="external">W3C</a>：起初，DOCTYPE声明被用在基于SGML语言或者XML语言的HTML中。该声明通常是文档遵循标准实践的标识，在HTML5文档中，该声明用来区分“标准模式”和所谓的“怪癖模式”。无论是希望通过SGML或者XML解析器来解析HTML文档，还是要使文档在不同的HTML5处理器中被同样处理，DOCTYPE都是一个高质量HTML文档中至关重要的部分。由于历史原因，浏览器在解析以DOCTYPE声明开头的HTML文档时，会表现得更加可预测和更加统一。</p>
+<p>值得注意的是，如果想要一个DOCTYPE能准确地匹配特定版本的(X)HTML，DOCTYPE声明必须出现在<html>标签前，并且拼写、大小写都正确才能符合预期的工作。往往这是一个很长的指令，所以W3C列举了<a href="https://www.w3.org/QA/2002/04/valid-dtd-list.html" target="_blank" rel="external">系列推荐的DOCTYPE声明</a>供查阅。可以看到，HTML5文档的DOCTYPE声明最简洁：</html></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div></pre></td></tr></table></figure>
+<p>而HTML4.01或者XHTML的DOCTYPE则会比较长，都包含了一个dtd文件的URL。例如HTML4.01 Transitional模式的DOCTYPE声明：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"</span></div><div class="line">   "http://www.w3.org/TR/html4/loose.dtd"&gt;</div></pre></td></tr></table></figure>
+<p>至此，已经可以对DOCTYPE声明有基本的认识了。但是为什么HTML5的简洁而HTML4.01的冗长呢？延伸来学习的话，需要对上述几个名词做一个解释：</p>
+<ul>
+<li>SGML: Standard Generalized Markup Language，标准通用标记语言，是用来定义通用标记语言的一个标准</li>
+<li>XML: Extensible Markup Language，可扩展标记语言，它是SGML的一个子集，意在简化SGML</li>
+<li>DTD: Document Type Difinition，文档类型定义，是SGML应用的一个特征，定义了标记结构的语法，还可能包含诸如字符实体引用的附加定义</li>
+<li>标准模式: standards mode，浏览器会根据标准来渲染页面和执行JavaScript</li>
+<li>怪癖模式: quirks mode，浏览器会采用更宽松的、向后兼容的（模仿旧浏览器的行为）方式来渲染页面和执行JavaScript，也称为混杂模式、兼容模式</li>
+</ul>
+<p>HTML4是一个基于SGML定义的标记语言，即一个SGML应用；XHTML是一个基于XML定义的标记语言，即一个XML应用。它们都需要与一个特定的DTD关联，于是就有了上述指向dtd文件的URL。而HTML5不是基于SGML的，则不需要引用dtd文件。在HTML5中，它的存在用来开启“标准模式”。如果文档没有给出DOCTYPE声明或者DOCTYPE声明不合法，浏览器则会以“怪癖模式”来进行渲染。</p>
+<h3 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h3><p><a href="https://en.wikipedia.org/wiki/Standard_Generalized_Markup_Language#XML" target="_blank" rel="external">Standard Generalized Markup Language</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://lijunbo1018.github.io/2017/01/08/别忘写DOCTYPE/" data-id="cixoo325m0004eos6a9tbr1mf" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+    
       <article id="post-用JS获取滚动条宽度" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -167,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://lijunbo1018.github.io/2015/08/15/用JS获取滚动条宽度/" data-id="cixomng98000iwzs6xdpp9ckr" class="article-share-link">分享到</a>
+      <a data-url="http://lijunbo1018.github.io/2015/08/15/用JS获取滚动条宽度/" data-id="cixoo325n0005eos64yuzcspw" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
@@ -311,7 +379,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://lijunbo1018.github.io/2015/08/02/vertical-align和垂直居中/" data-id="cixomng8q0001wzs6eyyy3kg0" class="article-share-link">分享到</a>
+      <a data-url="http://lijunbo1018.github.io/2015/08/02/vertical-align和垂直居中/" data-id="cixoo325h0001eos6du5xjjvn" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layout/">layout</a></li></ul>
@@ -376,7 +444,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://lijunbo1018.github.io/2015/07/21/checkbox选中了吗/" data-id="cixomng8m0000wzs6fnp5bl5d" class="article-share-link">分享到</a>
+      <a data-url="http://lijunbo1018.github.io/2015/07/21/checkbox选中了吗/" data-id="cixoo325d0000eos64nflcnyo" class="article-share-link">分享到</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DOM/">DOM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li></ul>
@@ -397,6 +465,23 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul id="recent-post" class="">
+        
+          <li>
+            
+            <div class="item-thumbnail">
+              <a href="/2017/01/08/别忘写DOCTYPE/" class="thumbnail">
+  
+    <span class="thumbnail-image thumbnail-none"></span>
+  
+</a>
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/学习笔记/">学习笔记</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/学习笔记/前端/">前端</a></p>
+              <p class="item-title"><a href="/2017/01/08/别忘写DOCTYPE/" class="title">别忘写DOCTYPE</a></p>
+              <p class="item-date"><time datetime="2017-01-08T12:47:45.000Z" itemprop="datePublished">2017-01-08</time></p>
+            </div>
+          </li>
         
           <li>
             
@@ -458,7 +543,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/前端/">前端</a><span class="category-list-count">3</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/前端/">前端</a><span class="category-list-count">4</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -467,7 +552,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DOM/">DOM</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layout/">layout</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -476,7 +561,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/DOM/" style="font-size: 20px;">DOM</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a>
+      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/DOM/" style="font-size: 20px;">DOM</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/layout/" style="font-size: 10px;">layout</a>
     </div>
   </div>
 
@@ -485,7 +570,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
